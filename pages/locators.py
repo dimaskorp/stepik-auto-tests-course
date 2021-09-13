@@ -6,5 +6,5 @@ class MainPageLocators():
 
 
 class LoginPageLocators():
-    LOGIN_USERNAME = (By.CSS_SELECTOR, "#login-username")
-    REGISTRATION_EMAIL = (By.CSS_SELECTOR, "#registration-email")
+    LOGIN_USERNAME = (By.NAME, "login-username")
+    REGISTRATION_EMAIL = (By.NAME, "registration-email")
