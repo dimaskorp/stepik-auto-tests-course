@@ -14,3 +14,5 @@ class ProductPageLocators():
     BUTTON = (By.CLASS_NAME, "btn")
     MESSAGE_PRODUCT_ADDED_TO_CART = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div")
     MESSAGE_CAST_BASKET = (By.CSS_SELECTOR, "#messages > div.alert.alert-safe.alert-noicon.alert-info.fade.in > div")
+
+
