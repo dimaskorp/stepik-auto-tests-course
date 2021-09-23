@@ -47,3 +47,6 @@ class ProductPage(BasePage):
             "#messages > div.alert.alert-safe.alert-noicon.alert-info.fade.in > div > p:nth-child(1) > strong")
         price_product_text = price_product.text
         assert cost_basket_text == price_product_text, "The cost of the basket does not match the price of the product"
+
+
+
