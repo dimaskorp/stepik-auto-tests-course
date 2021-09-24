@@ -21,16 +21,16 @@ class TestUserAddToBasketFromProductPage():
 
     def test_user_cant_see_success_message(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-        page = ProductPage(browser,
-                           link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
-        page.open()  # открываем страницу
+        page = ProductPage(browser, link)
+        page.open()
         page.should_not_be_success_message_is_not_element_present()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
         page = ProductPage(browser,
-                           link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
-        page.open()  # открываем страницу
+                           link)
+        page.open()
         page.add_to_shopping_cart()
         page.should_be_product_add_to_cart()
         page.cost_basket_coincides_price_of_product()
@@ -49,12 +49,11 @@ class TestUserAddToBasketFromProductPage():
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"]
                          )
-@pytest.mark.skip(reason="no way of currently testing this")
+@pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser, link):
     # link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-    page = ProductPage(browser,
-                       link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
-    page.open()  # открываем страницу
+    page = ProductPage(browser, link)
+    page.open()
     page.add_to_shopping_cart()
     page.should_be_product_add_to_cart()
     page.cost_basket_coincides_price_of_product()
@@ -63,18 +62,16 @@ def test_guest_can_add_product_to_basket(browser, link):
 @pytest.mark.skip(reason="no way of currently testing this")
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-    page = ProductPage(browser,
-                       link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
-    page.open()  # открываем страницу
+    page = ProductPage(browser, link)
+    page.open()
     page.add_to_shopping_cart()
     page.should_not_be_success_message_is_not_element_present()
 
 
 def test_guest_cant_see_success_message(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-    page = ProductPage(browser,
-                       link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
-    page.open()  # открываем страницу
+    page = ProductPage(browser, link)
+    page.open()
     page.should_not_be_success_message_is_not_element_present()
 
 
@@ -82,8 +79,8 @@ def test_guest_cant_see_success_message(browser):
 def test_message_disappeared_after_adding_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
     page = ProductPage(browser,
-                       link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
-    page.open()  # открываем страницу
+                       link)
+    page.open()
     page.add_to_shopping_cart()
     page.should_not_be_success_message_is_disappeared()
 
@@ -95,10 +92,10 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
-    page = ProductPage(browser,
-                       link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
+    page = ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
     login_page = LoginPage(browser, browser.current_url)
@@ -106,17 +103,12 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     login_page.should_be_login_page()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/"
-    page = ProductPage(browser,
-                       link)  # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес
-    page.open()  # открываем страницу
+    page = ProductPage(browser, link)
+    page.open()
     page.go_to_cart_page()
     cart_page = BasketPage(browser, browser.current_url)
     cart_page.should_be_no_products_in_basket()
     cart_page.should_be_text_basket_is_empty()
-
-# if __name__ == '__main__':
-#     browser = webdriver.Chrome()
-#     browser.get("http://selenium1py.pythonanywhere.com/ru/catalogue/the-shellcoders-handbook_209/?promo=newYear2019")
-#     test_guest_cant_see_product_in_basket_opened_from_product_page(browser)
